@@ -5,11 +5,11 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Poppins", sans-serif;
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-      background-color: #F4F4F4
+      background-color: #FEFCFF
 ;
   }
   
