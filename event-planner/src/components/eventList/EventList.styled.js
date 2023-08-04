@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { device } from "../../utils/device";
-import Box from "../../components/common/box";
+// import Box from "../../components/common/box";
 
 export const StyledWrapper = styled.ul`
   display: grid;

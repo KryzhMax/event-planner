@@ -2,7 +2,32 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Box from "../../common/box";
 
-export const StyledEvent = styled.li``;
+export const BoxHover = styled(Box)`
+  width: 272px;
+  overflow: initial;
+
+  transition: transform 300ms ease-in-out, translateY 300ms ease-in-out;
+`;
+
+export const StyledEvent = styled.li`
+  position: relative;
+  overflow: hidden;
+  height: 480px;
+  border-radius: 12px;
+  box-shadow: 2px 4px 9px rgba(166, 141, 174, 0.28);
+
+  &:hover ${BoxHover}, &:focus ${BoxHover} {
+    transform: translateY(-56px);
+  }
+`;
+export const StyledCard = styled(Box)`
+  position: relative;
+  height: 464px;
+
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 2px 4px 9px rgba(166, 141, 174, 0.28);
+`;
 
 export const EventWrapper = styled(Box)`
   width: 272px;
@@ -12,14 +37,11 @@ export const EventWrapper = styled(Box)`
 
 export const StyledImg = styled.img`
   width: 272px;
-  max-height: 336px;
+  min-height: 296px;
 `;
 
-export const StyledDate = styled(Box)`
-  display: flex;
-  justify-content: space-between;
+export const StyledDatePlace = styled.span`
   max-height: 40px;
-  padding: 8px 16px;
 
   font-size: 14px;
   line-height: 1.7;
@@ -28,11 +50,14 @@ export const StyledDate = styled(Box)`
 `;
 
 export const TextWrapper = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #fff;
 `;
 
 export const StyledTitle = styled.h2`
-  padding: 16px 16px 8px 16px;
+  padding: 13px 16px 8px 16px;
 
   font-size: 16px;
   font-weight: 500;
@@ -42,33 +67,13 @@ export const StyledTitle = styled.h2`
 `;
 export const StyledDesc = styled.p`
   padding: 8px 16px 16px;
+  height: 96px;
 
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 1.42;
   text-align: left;
-`;
-
-export const BoxHover = styled(Box)`
-  width: 272px;
-  transform: translateY(0%);
-
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  padding: 10px;
-  background: rgba(252, 132, 45, 0.2);
-
-  &:hover,
-  &:focus {
-    box-shadow: 2px 4px 9px rgba(166, 141, 174, 0.28);
-    transition: box-shadow 300ms ease-out, transform 300ms ease-out;
-  }
 `;
 
 export const StyledReadMore = styled(NavLink)`
@@ -93,4 +98,8 @@ export const StyledReadMore = styled(NavLink)`
   opacity: 1;
   transition: opacity 300ms linear;
   z-index: 1;
+`;
+
+export const Container = styled(Box)`
+  padding: 20px;
 `;

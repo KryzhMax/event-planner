@@ -1,24 +1,22 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import Box from "../../../components/common/box";
-import {
-  StyledImg,
-  StyledDate,
-  //   StyledPlace,
-  StyledDesc,
-  //   StyledLine,
-  StyledEvent,
-  StyledTitle,
-  TextWrapper,
-  BoxHover,
-  StyledReadMore,
-} from "./EventItem.styled";
+import * as SC from "./EventItem.styled";
 
 function EventItems(item) {
-  console.log(item);
-  const { title, date, description, eventId, image } = item;
+  const {
+    title,
+    date,
+    description,
+    id,
+    image,
+    place,
+    time,
+    // category,
+    // priority,
+  } = item;
   const [showButton, setShowButton] = useState(false);
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
   const handleMouseEnter = () => {
     setShowButton(true);
@@ -29,31 +27,56 @@ function EventItems(item) {
   };
 
   const handleReadMoreClick = () => {
-    searchParams.set("eventId", eventId);
+    console.log("single item", item);
+    console.log(id);
+    // searchParams.set("eventId", id);
   };
 
   return (
-    <StyledEvent>
-      <Box onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <StyledImg src={image} />
+    <SC.StyledEvent>
+      <Box
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{ height: "inherit", backgroundColor: "#fff" }}
+      >
+        <SC.StyledImg src={image} />
         {/* <StyledLine /> */}
-        <BoxHover>
-          <TextWrapper style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}>
-            <StyledDate>{date || " "}</StyledDate>
-            {/* <StyledPlace>{place || " "}</StyledPlace> */}
-          </TextWrapper>
-          <TextWrapper>
-            <StyledTitle>{title}</StyledTitle>
-            <StyledDesc>{description}</StyledDesc>
-          </TextWrapper>
-          {showButton && (
-            <StyledReadMore to="/event-details" onClick={handleReadMoreClick}>
-              Read More
-            </StyledReadMore>
-          )}
-        </BoxHover>
+        <SC.BoxHover>
+          <SC.TextWrapper
+            style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}
+          >
+            <Box
+              style={{
+                padding: "8px 16px",
+              }}
+            >
+              <SC.StyledDatePlace>{date || ""}</SC.StyledDatePlace>
+              <SC.StyledDatePlace> at {time || ""}</SC.StyledDatePlace>
+            </Box>
+            <SC.StyledDatePlace style={{ padding: "8px 16px" }}>
+              {place || ""}
+            </SC.StyledDatePlace>
+          </SC.TextWrapper>
+          <SC.TextWrapper style={{ display: "block" }}>
+            <SC.StyledTitle>{title}</SC.StyledTitle>
+            <SC.StyledDesc>{description}</SC.StyledDesc>
+            {showButton && (
+              <SC.StyledReadMore
+                to={`/event-details/${id}`}
+                item={item}
+                onClick={handleReadMoreClick}
+              >
+                Read More
+              </SC.StyledReadMore>
+            )}
+          </SC.TextWrapper>
+
+          {/* <StyledReadMore to={`/event-details/${id}`} onClick={handleReadMoreClick} item={item}>
+            Read More
+          </StyledReadMore> */}
+        </SC.BoxHover>
       </Box>
-    </StyledEvent>
+    </SC.StyledEvent>
   );
 }
 
